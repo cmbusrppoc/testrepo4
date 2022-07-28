@@ -20,7 +20,8 @@ echo "SRP component UID generated: $SRP_UID"
 
 mkdir -p srp_data/
 
-echo "$SRP_UID" > srp_data/srp_uid
+ENCODED_SRP_UID=$(echo "${SRP_UID}" | sed -e 's|/|%2F|g')
+echo "$ENCODED_SRP_UID" > srp_data/srp_uid
 echo "SRP component UID stored in: srp_data/srp_uid"
 
 echo "${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}" > srp_data/build_number

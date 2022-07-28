@@ -24,22 +24,25 @@ if [ -z "$SOURCE_PROVENANCE_PATH" ] && [ -f "$SOURCE_PROVENANCE_PATH" ]; then
     cp "$SOURCE_PROVENANCE_PATH" "./srp_data/source_provenance.json"
 fi
 
-if [ -z "$NETWORK_PROVENANCE_PATH" ] && [ -f "$NETWORK_PROVENANCE_PATH" ]; then
-    cp "$NETWORK_PROVENANCE_PATH" "./srp_data/network_provenance.json"
-fi
+###### Uncomment logic later to merge network provenance data with source provenance data
+#if [ -z "$NETWORK_PROVENANCE_PATH" ] && [ -f "$NETWORK_PROVENANCE_PATH" ]; then
+#    cp "$NETWORK_PROVENANCE_PATH" "./srp_data/network_provenance.json"
+#fi
+#
+#if [ -f "./srp_data/network_provenance.json" ]; then
+#    echo "Found network provenance: ./srp_data/network_provenance.json"
+#    echo "Merging network provenance and source provenance:"
+#    srp provenance merge \
+#        --source ./srp_data/source_provenance.json \
+#        --network ./srp_data/network_provenance.json \
+#        --saveto ./srp_data/finalized_source_provenance.json \
+#        --config ./srp_data/config.yml
+#else
+#    echo "No network provenance found"
+#    cp ./srp_data/source_provenance.json ./srp_data/finalized_source_provenance.json
+#fi
+cp ./srp_data/source_provenance.json ./srp_data/finalized_source_provenance.json
 
-if [ -f "./srp_data/network_provenance.json" ]; then
-    echo "Found network provenance: ./srp_data/network_provenance.json"
-    echo "Merging network provenance and source provenance:"
-    srp provenance merge \
-        --source ./srp_data/source_provenance.json \
-        --network ./srp_data/network_provenance.json \
-        --saveto ./srp_data/finalized_source_provenance.json \
-        --config ./srp_data/config.yml
-else
-    echo "No network provenance found"
-    cp ./srp_data/source_provenance.json ./srp_data/finalized_source_provenance.json
-fi
 
 # TODO: move --url to the init phase, once the SRP CLI supports it
 #   There is an open issue to allow it to be set through config.yml, which would 
