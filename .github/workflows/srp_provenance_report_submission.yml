@@ -14,6 +14,11 @@ jobs:
     name: SRP Provenance report submission
     runs-on: ubuntu-latest
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: |
+        echo "$GITHUB_CONTEXT"
     - uses: actions/checkout@v3
     - name: Check SRP Creds
       uses: ./.github/actions/srp-helper/check-srp-creds
