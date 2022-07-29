@@ -7,7 +7,7 @@ FYI: Please update workflow with the required branch for which workflow is to be
 
 
 #### Steps include in the workflow ####
-
+Print github payload
 1. Initialize a ubuntu github runner where workflow steps will run
 
 2. Configure SRP auth secret as environment varriable for Workflow to use (which must have been configured as organizational secret and shared to required repositories)
